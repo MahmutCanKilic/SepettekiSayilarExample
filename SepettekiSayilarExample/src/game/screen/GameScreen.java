@@ -1,27 +1,25 @@
-package game;
+package game.screen;
 
 import game.sprite.Meyve;
 import game.sprite.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
-public class Board extends JPanel implements KeyListener {
+public class GameScreen extends JPanel implements KeyListener {
 
     private java.util.List<Meyve> meyveler = new ArrayList<>();
     private Player player = new Player();
     private int skor = 0;
     private boolean oyunDevamEdiyor = true;
-    private ParticleSystem particleSystem;
-    private Dimension d;
-    private Timer timer;
-    public Board() {
-        initBoard();
+
+    public GameScreen() {
         Timer timer = new Timer(30, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,46 +35,8 @@ public class Board extends JPanel implements KeyListener {
         setFocusable(true);
         requestFocus();
 
-        particleSystem = new ParticleSystem();
     }
-    private void initBoard() {
-        addKeyListener(new TAdapter());
-        setFocusable(true);
-        d = new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
-        setBackground(Color.black);
 
-        timer = new Timer(Commons.DELAY, new GameCycle());
-        timer.start();
-
-        gameInit();
-
-    }
-    private class TAdapter extends KeyAdapter {
-        private Set<Integer> pressedKeys = new HashSet<>();
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-            int keyCode = e.getKeyCode();
-            pressedKeys.remove(keyCode);
-
-            player.keyReleased(e);
-        }
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-            int keyCode = e.getKeyCode();
-            pressedKeys.add(keyCode);
-
-            int x = player.getX();
-            int y = player.getY();
-
-        }
-    }
-    private void gameInit() {
-
-        //1 tane daha player eklenecek
-        player = new Player();
-    }
     private void update() {
         for (Meyve meyve : meyveler) {
             meyve.move();
@@ -87,22 +47,27 @@ public class Board extends JPanel implements KeyListener {
                 skor++;
                 break;
             }
-
         }
         meyveleriEkle();
         meyveCikar();
+
+        // Sepetin sağ veya sol köşesine çarptığını kontrol et
+        if (player.getX() <= 0 || player.getX() + player.getBounds().getWidth() >= getWidth()) {
+            oyunDevamEdiyor = false;
+            JOptionPane.showMessageDialog(this, "Oyun bitti! Skor: " + skor, "Oyun Sonu", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+        this.requestFocusInWindow();
     }
 
     private void meyveleriEkle() {
-        if (Math.random() < 0.05) {
+        if (Math.random() < 0.05) {  // Yeni meyve eklemek için olasılık
             meyveler.add(new Meyve());
         }
     }
 
     private void meyveCikar() {
         Iterator<Meyve> iterator = meyveler.iterator();
-
-
         while (iterator.hasNext()) {
             Meyve meyve = iterator.next();
             if (meyve.getY() > getHeight()) {
@@ -114,9 +79,9 @@ public class Board extends JPanel implements KeyListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        setBackground(Color.BLACK);
         player.draw(g);
-        drawExplosion(g);
+
         for (Meyve meyve : meyveler) {
             meyve.initFruit(g);
         }
@@ -140,32 +105,5 @@ public class Board extends JPanel implements KeyListener {
     }
     @Override
     public void keyReleased(KeyEvent e) {
-
-    }
-
-    private void doGameCycle() {
-        update();
-        updateExplosion();
-        repaint();
-    }
-
-    private class GameCycle implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-                doGameCycle();
-
-        }
-    }
-
-    private void createExplosion(int x, int y, int count,Color color,float size) {
-        particleSystem.createParticles(x, y, count,color,size);
-    }
-
-    private void updateExplosion() {
-        particleSystem.updateParticles();
-    }
-    private void drawExplosion(Graphics g) {
-        particleSystem.drawParticles(g);
     }
 }
