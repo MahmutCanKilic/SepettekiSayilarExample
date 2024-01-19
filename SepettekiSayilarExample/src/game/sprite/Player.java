@@ -16,7 +16,7 @@ public class Player extends Sprite {
     }
 
     public void hareketEt(int deltaX) {
-        x += deltaX;
+        x += deltaX * 4;
 
         // Pencere sınırlarını kontrol et
         if (x < 0) {

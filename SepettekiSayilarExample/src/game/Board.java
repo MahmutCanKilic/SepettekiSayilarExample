@@ -83,7 +83,7 @@ public class Board extends JPanel implements KeyListener {
             if (meyve.getBounds().intersects(player.getBounds())) {
                 meyveler.remove(meyve);
 
-                createExplosion(meyve.getX(),meyve.getY(),100,Color.red, 5);
+                createExplosion(meyve.getX(),meyve.getY(),15,Color.red, 5);
                 skor++;
                 break;
             }
