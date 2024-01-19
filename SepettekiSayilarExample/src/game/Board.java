@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class Board extends JPanel implements KeyListener {
-
+//
     private java.util.List<Meyve> meyveler = new ArrayList<>();
     private Player player = new Player();
     private int skor = 0;
