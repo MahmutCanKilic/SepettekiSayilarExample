@@ -9,7 +9,6 @@ public interface Commons {
     int BORDER_LEFT = 5;
 
     int GROUND = 900;
-    int BOMB_HEIGHT = 5;
 
 
 
@@ -20,6 +19,6 @@ public interface Commons {
     int PLAYER_WIDTH = 45;
     int PLAYER_HEIGHT = 30;
 
-    int PICKABLE_HEIGHT = 25;
-    int PICKABLE_WIDTH = 25;
+    int MEYVE_HEIGHT = 25;
+    int MEYVE_WIDTH = 25;
 }

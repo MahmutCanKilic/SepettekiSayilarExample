@@ -1,8 +1,11 @@
 package game;
 
+import game.sprite.Sprite;
+
+import javax.swing.*;
 import java.awt.*;
 
-public class Particle {
+public class Particle extends Sprite {
     private int x;
     private int y;
     private int speedX;
@@ -11,6 +14,7 @@ public class Particle {
     private Color color;
     private long creationTime;
     private float size;
+    private int width;
     public Particle(int x, int y, int speedX, int speedY, int life, Color color, float size) {
         this.x = x;
         this.y = y;
@@ -20,6 +24,12 @@ public class Particle {
         this.color = color;
         this.creationTime = System.currentTimeMillis();
         this.size = size;
+        initParticle();
+    }
+    public void initParticle(){
+        var particleImg = "src/images/particle.jpg";
+        var ii = new ImageIcon(particleImg);
+        setImage(ii.getImage());
     }
     public long getCreationTime() {
         return creationTime;
@@ -41,9 +51,7 @@ public class Particle {
     }
 
     public void draw(Graphics g) {
-        g.setColor(color);
-        int drawSize = (int) size;
-        g.fillRect(x, y, drawSize, drawSize);
+        g.drawImage(getImage(), x, y, null);
     }
 }
 
