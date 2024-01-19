@@ -23,7 +23,7 @@ public class StartScreen extends JPanel {
     }
 
     private JLabel getStartButton() {
-        ImageIcon startButtonImage = new ImageIcon( "C:\\Users\\karam\\IdeaProjects\\SepettekiSayilarE\\SepettekiSayilarExample\\src\\images\\baslat2.png");
+        ImageIcon startButtonImage = new ImageIcon( "C:\\refactor\\SepettekiSayilarExample\\SepettekiSayilarExample\\src\\images\\baslat2.png");
         JLabel startButtonLabel = new JLabel(startButtonImage);
         startButtonLabel.addMouseListener(new MouseAdapter() {
             @Override
@@ -61,7 +61,7 @@ public class StartScreen extends JPanel {
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING,
                 RenderingHints.VALUE_RENDER_QUALITY);
 
-        ImageIcon background = new ImageIcon("C:\\Users\\karam\\IdeaProjects\\SepettekiSayilarE\\SepettekiSayilarExample\\src\\images\\background.png");
+        ImageIcon background = new ImageIcon("C:\\refactor\\SepettekiSayilarExample\\SepettekiSayilarExample\\src\\images\\background.png");
         Image backgroundImage = background.getImage();
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
         setPreferredSize(new Dimension(Commons.BOARD_WIDTH,Commons.BOARD_HEIGHT));
