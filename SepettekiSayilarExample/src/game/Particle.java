@@ -27,7 +27,7 @@ public class Particle extends Sprite {
         initParticle();
     }
     public void initParticle(){
-        var particleImg = "src/images/particle.png";
+        var particleImg = "src/images/particle.jpg";
         var ii = new ImageIcon(particleImg);
         setImage(ii.getImage());
     }
@@ -51,11 +51,7 @@ public class Particle extends Sprite {
     }
 
     public void draw(Graphics g) {
-        //g.drawImage(getImage(), x, y, null);
-        int drawWidth = (int) (getImage().getWidth(null) * 0.2);
-        int drawHeight = (int) (getImage().getHeight(null) * 0.2);
-
-        g.drawImage(getImage(), x, y, drawWidth, drawHeight, null);
+        g.drawImage(getImage(), x, y, null);
     }
 }
 
