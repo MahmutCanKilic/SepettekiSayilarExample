@@ -18,14 +18,14 @@ public class ParticleSystem {
     public void createParticles(int x, int y, int count, Color particleColor,float size) {
         for (int i = 0; i < count; i++) {
 
-            int speedX = random.nextInt(7) - 2;
-            int speedY = random.nextInt(7) - 2;
+            int speedX = random.nextInt(3) - 1;
+            int speedY = random.nextInt(3) - 1;
 
 
             int startX = x + random.nextInt(21) - 10;
             int startY = y + random.nextInt(21) - 10;
 
-            int life = random.nextInt(30) + 20;
+            int life = random.nextInt(10) + 5;
 
             Particle particle = new Particle(startX, startY, speedX, speedY, life, particleColor, size);
             particles.add(particle);
@@ -47,7 +47,7 @@ public class ParticleSystem {
     }
 
     public void drawParticles(Graphics g) {
-        for (Particle particle : particles) {
+        for (game.Particle particle : particles) {
             particle.draw(g);
         }
     }
