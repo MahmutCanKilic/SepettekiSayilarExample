@@ -3,8 +3,8 @@ package game;
 public interface Commons {
 
 
-    int BOARD_WIDTH = 1500;
-    int BOARD_HEIGHT = 1000;
+    int BOARD_WIDTH = 800;
+    int BOARD_HEIGHT = 650;
     int BORDER_RIGHT = 30;
     int BORDER_LEFT = 5;
 
@@ -14,7 +14,7 @@ public interface Commons {
 
 
     int GO_DOWN = 0;
-    int NUMBER_OF_ALIENS_TO_DESTROY = 20;
+    int NUMBER_OF_FRUIT_TO_DESTROY = 20;
     int CHANCE = 5;
     int DELAY = 17;
     int PLAYER_WIDTH = 45;

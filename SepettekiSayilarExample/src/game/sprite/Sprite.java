@@ -9,7 +9,7 @@ public class Sprite {
     public boolean visible;
     private Image image;
     private boolean dying;
-
+    int speed;
     int x;
     int y;
     int dx;
@@ -76,6 +76,7 @@ public class Sprite {
     public boolean isOutOfBounds() {
         return y >= Commons.BOARD_HEIGHT || x >= Commons.BOARD_WIDTH || x <= 0;
     }
+
     public void move() {
         x += dx;
     }
